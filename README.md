@@ -1,6 +1,9 @@
 # Castling-Hook
 A Foddian game for the Ludwig Jam 2021.
 
+# Instructions:
+It's a whole Godot project just asking you to take it! Install Godot and launch the project file.
+
 # Notes:
 • This is the first time I’ve joined a game jam. It’s kind of exciting, to say the least. It’s also the first time I’ve really been motivated to make and finish a game.
 
