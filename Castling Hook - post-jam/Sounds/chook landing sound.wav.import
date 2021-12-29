@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/chook landing sound.wav-b0d5e12bb5078f136cd7698733aa2c4a.sample"
+
+[deps]
+
+source_file="res://Sounds/chook landing sound.wav"
+dest_files=[ "res://.import/chook landing sound.wav-b0d5e12bb5078f136cd7698733aa2c4a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
