@@ -7,38 +7,33 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Prefs.load_settings()
+	
+	$Crown.visible = Prefs.get_setting("progress", "complete")
+	$Settings/MarginContainer/HBoxContainer/VBoxContainer/Fullscreen/MuteToggle.pressed = Prefs.get_setting("graphics", "fullscreen")
+	$Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteMusic/MuteToggle.pressed = Prefs.get_setting("volume", "mute_music")
+	$Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX/MuteToggle.pressed = Prefs.get_setting("volume", "mute_sound")
+	$Settings/MarginContainer/HBoxContainer/VBoxContainer/MusicVolume/HSlider.value = Prefs.get_setting("volume", "music_volume")
+	$Settings/MarginContainer/HBoxContainer/VBoxContainer/SoundVolume/HSlider.value = Prefs.get_setting("volume", "sound_volume")
+	
+	Prefs.apply_settings()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-
-func toggle_fullscreen(button_pressed):
-	Prefs.fullscreen = button_pressed
-	Prefs.apply_settings()
-
-func toggle_mute_music(button_pressed):
-	Prefs.mute_music = button_pressed
-
-func toggle_mute_sound(button_pressed):
-	Prefs.mute_sound = button_pressed
-
-func music_volume_changed(value):
-	Prefs.music_volume = value - 100
-
-func sound_volume_changed(value):
-	Prefs.sound_volume = value - 100
-
-func play_pressed():
-	get_tree().change_scene("res://Game.tscn")
-
 func settings_pressed():
 	$Settings.visible = true
 
 func exit_pressed():
+	Prefs.save_settings()
 	get_tree().quit()
 
-func close_settings():
-	$Settings.visible = false
+func new_game():
+	var dir = Directory.new()
+	dir.remove("user://savegame.save")
+	get_tree().change_scene("res://Game.tscn")
+
+func continue_game():
+	get_tree().change_scene("res://Game.tscn")

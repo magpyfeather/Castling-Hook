@@ -1,15 +1,18 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Sprites/chook unpressed button.png" type="Texture" id=1]
-[ext_resource path="res://MuteButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Fonts/pixeloid_sans_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Settings.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/chook crown.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/pixeloid_sans.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://VolumeSlider.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/star.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/chook disabled button.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/chook hover button.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/chook pressed button.png" type="Texture" id=9]
 [ext_resource path="res://MainMenu.gd" type="Script" id=10]
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 0.0454545 ), 0.0, 0.0, 0, 0, Vector2( 0.480392, 0.990909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
@@ -48,35 +51,35 @@ margin_right = 32.0
 margin_top = 32.0
 margin_bottom = 32.0
 
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFont" id=6]
 resource_local_to_scene = true
-antialiased = false
-font_path = "res://Fonts/PixeloidSans-Bold.ttf"
+size = 48
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=7]
 resource_local_to_scene = true
 size = 48
-font_data = SubResource( 6 )
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFont" id=8]
 resource_local_to_scene = true
-antialiased = false
-font_path = "res://Fonts/PixeloidSans-Bold.ttf"
+size = 48
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=9]
 resource_local_to_scene = true
-size = 48
-font_data = SubResource( 8 )
+size = 24
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFont" id=10]
 resource_local_to_scene = true
-antialiased = false
-font_path = "res://Fonts/PixeloidSans-Bold.ttf"
+size = 24
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=11]
 resource_local_to_scene = true
-size = 24
-font_data = SubResource( 10 )
+size = 48
+font_data = ExtResource( 5 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -85,6 +88,23 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Crown" type="Sprite" parent="."]
+position = Vector2( 645, 185 )
+rotation = -0.683924
+scale = Vector2( 3.61836, 3.61836 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Crown"]
+position = Vector2( -1.8254, 1.36444 )
+amount = 1
+lifetime = 3.0
+preprocess = 3.0
+texture = ExtResource( 6 )
+gravity = Vector2( 0, 0 )
+angular_velocity = -90.0
+scale_amount_curve = SubResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -114,256 +134,112 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 155.0
+margin_top = 88.0
 margin_right = 1720.0
-margin_bottom = 253.0
+margin_bottom = 186.0
 custom_fonts/font = SubResource( 1 )
 text = "Castling Hook"
 align = 1
 
 [node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 293.0
+margin_top = 226.0
 margin_right = 1720.0
-margin_bottom = 323.0
+margin_bottom = 256.0
 custom_fonts/font = ExtResource( 4 )
-text = "a game for the LUDWIG JAM 2021"
+text = "a game (originally for the LUDWIG JAM 2021)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 363.0
+[node name="NewGame" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 296.0
 margin_right = 1720.0
-margin_bottom = 457.0
+margin_bottom = 390.0
 rect_pivot_offset = Vector2( -120, 141 )
+custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 430.0
+margin_right = 1720.0
+margin_bottom = 524.0
+rect_pivot_offset = Vector2( -120, 141 )
 custom_fonts/font = ExtResource( 4 )
-text = "Play"
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 497.0
+margin_top = 564.0
 margin_right = 1720.0
-margin_bottom = 591.0
+margin_bottom = 658.0
 rect_pivot_offset = Vector2( -120, 141 )
+custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = ExtResource( 4 )
 text = "Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 631.0
+margin_top = 698.0
 margin_right = 1720.0
-margin_bottom = 725.0
+margin_bottom = 792.0
 rect_pivot_offset = Vector2( -120, 141 )
+custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = ExtResource( 4 )
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="NinePatchRect" parent="."]
+[node name="Settings" parent="." instance=ExtResource( 2 )]
 visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -640.0
-margin_top = -360.0
-margin_right = 640.0
-margin_bottom = 360.0
-texture = ExtResource( 1 )
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="Settings"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 48.0
-margin_top = 60.0
-margin_right = -48.0
-margin_bottom = -60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Settings/MarginContainer"]
-margin_right = 1184.0
-margin_bottom = 600.0
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer/HBoxContainer"]
-margin_left = 74.0
-margin_right = 604.0
-margin_bottom = 600.0
-alignment = 1
-
-[node name="Fullscreen" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 23.0
-margin_right = 530.0
-margin_bottom = 117.0
 
 [node name="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/Fullscreen" index="0"]
-margin_left = 24.0
-margin_right = 347.0
-custom_fonts/font = SubResource( 7 )
-text = "Fullscreen"
-
-[node name="MuteToggle" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/Fullscreen" index="1"]
-margin_left = 357.0
-margin_right = 506.0
-text = "Toggle"
-
-[node name="MuteMusic" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 121.0
-margin_right = 530.0
-margin_bottom = 215.0
+custom_fonts/font = SubResource( 6 )
 
 [node name="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteMusic" index="0"]
-margin_left = 23.0
-margin_right = 368.0
 custom_fonts/font = SubResource( 7 )
-text = "Mute Music"
-
-[node name="MuteToggle" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteMusic" index="1"]
-margin_left = 378.0
-margin_right = 506.0
-
-[node name="MuteSFX" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 219.0
-margin_right = 530.0
-margin_bottom = 313.0
 
 [node name="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX" index="0"]
-margin_right = 392.0
-custom_fonts/font = SubResource( 9 )
-text = "Mute Sounds"
-
-[node name="MuteToggle" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX" index="1"]
-margin_left = 402.0
-margin_right = 530.0
-
-[node name="MusicVolume" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 317.0
-margin_right = 530.0
-margin_bottom = 445.0
+custom_fonts/font = SubResource( 8 )
 
 [node name="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MusicVolume" index="0"]
-margin_right = 208.0
-custom_fonts/font = SubResource( 11 )
-text = "Music Volume"
-
-[node name="HSlider" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/MusicVolume" index="1"]
-margin_left = 218.0
-margin_right = 530.0
-value = 100.0
-
-[node name="SoundVolume" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 449.0
-margin_right = 530.0
-margin_bottom = 577.0
+custom_fonts/font = SubResource( 9 )
 
 [node name="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/SoundVolume" index="0"]
-margin_right = 214.0
+custom_fonts/font = SubResource( 10 )
+
+[node name="CreditsTitle" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2" index="0"]
 custom_fonts/font = SubResource( 11 )
-text = "Sound Volume"
 
-[node name="HSlider" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer/SoundVolume" index="1"]
-margin_left = 224.0
-margin_right = 530.0
-value = 100.0
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/MarginContainer/HBoxContainer"]
-margin_left = 608.0
-margin_right = 1109.0
-margin_bottom = 600.0
-alignment = 1
-
-[node name="CreditsTitle" type="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 38.0
-margin_right = 501.0
-margin_bottom = 97.0
-custom_fonts/font = ExtResource( 3 )
-text = "Credits"
-align = 1
-
-[node name="Credits" type="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 101.0
-margin_right = 501.0
-margin_bottom = 197.0
-custom_fonts/font = ExtResource( 4 )
-text = "
-Graphics by magpyfeather (that's me!)
-"
-align = 1
-
-[node name="Pixeloid Sans" type="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 201.0
-margin_right = 501.0
-margin_bottom = 363.0
-custom_fonts/font = ExtResource( 4 )
-text = "Pixeloid Sans (the font used here) is by ggbot.itch.io, and is licensed under the SIL Open Font License, Version 1.1.
-"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kubbi" type="Label" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 367.0
-margin_right = 501.0
-margin_bottom = 463.0
-custom_fonts/font = ExtResource( 4 )
-text = "\"Something New\" by Kubbi is licensed under CC-BY-SA 3.0.
-"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CloseSettings" type="Button" parent="Settings/MarginContainer/HBoxContainer/VBoxContainer2"]
-margin_top = 467.0
-margin_right = 501.0
-margin_bottom = 561.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = ExtResource( 4 )
-text = "Close"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NewGame" to="." method="new_game"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="continue_game"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="settings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="exit_pressed"]
-[connection signal="toggled" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/Fullscreen/MuteToggle" to="." method="toggle_fullscreen"]
-[connection signal="toggled" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteMusic/MuteToggle" to="." method="toggle_mute_music"]
-[connection signal="toggled" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX/MuteToggle" to="." method="toggle_mute_sound"]
-[connection signal="value_changed" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/MusicVolume/HSlider" to="." method="music_volume_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/SoundVolume/HSlider" to="." method="sound_volume_changed"]
-[connection signal="pressed" from="Settings/MarginContainer/HBoxContainer/VBoxContainer2/CloseSettings" to="." method="close_settings"]
+[connection signal="toggled" from="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX/MuteToggle" to="Settings" method="toggle_mute_music"]
 
+[editable path="Settings"]
 [editable path="Settings/MarginContainer/HBoxContainer/VBoxContainer/Fullscreen"]
 [editable path="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteMusic"]
 [editable path="Settings/MarginContainer/HBoxContainer/VBoxContainer/MuteSFX"]
