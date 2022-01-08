@@ -1,0 +1,268 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://MuteButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VolumeSlider.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/pixeloid_sans.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Fonts/pixeloid_sans_bold.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Sprites/chook unpressed button.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/chook disabled button.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/chook hover button.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/chook pressed button.png" type="Texture" id=8]
+[ext_resource path="res://Fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=6]
+resource_local_to_scene = true
+size = 48
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=7]
+resource_local_to_scene = true
+size = 48
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=8]
+resource_local_to_scene = true
+size = 48
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=9]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 256, 256 )
+margin_left = 32.0
+margin_right = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 256, 256 )
+margin_left = 32.0
+margin_right = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 256, 256 )
+margin_left = 32.0
+margin_right = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 256, 256 )
+margin_left = 32.0
+margin_right = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+
+[node name="Settings" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+texture = ExtResource( 5 )
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = 60.0
+margin_right = -48.0
+margin_bottom = -60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 1184.0
+margin_bottom = 600.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 93.0
+margin_right = 586.0
+margin_bottom = 600.0
+alignment = 1
+
+[node name="Fullscreen" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 23.0
+margin_right = 493.0
+margin_bottom = 117.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/Fullscreen" index="0"]
+margin_left = 5.0
+margin_right = 328.0
+custom_fonts/font = SubResource( 6 )
+text = "Fullscreen"
+
+[node name="MuteToggle" parent="MarginContainer/HBoxContainer/VBoxContainer/Fullscreen" index="1"]
+margin_left = 338.0
+margin_right = 487.0
+text = "Toggle"
+
+[node name="MuteMusic" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 121.0
+margin_right = 493.0
+margin_bottom = 215.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MuteMusic" index="0"]
+margin_left = 5.0
+margin_right = 350.0
+custom_fonts/font = SubResource( 7 )
+text = "Mute Music"
+
+[node name="MuteToggle" parent="MarginContainer/HBoxContainer/VBoxContainer/MuteMusic" index="1"]
+margin_left = 360.0
+margin_right = 488.0
+
+[node name="MuteSFX" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 219.0
+margin_right = 493.0
+margin_bottom = 313.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MuteSFX" index="0"]
+margin_right = 355.0
+custom_fonts/font = SubResource( 8 )
+text = "Mute Sound"
+
+[node name="MuteToggle" parent="MarginContainer/HBoxContainer/VBoxContainer/MuteSFX" index="1"]
+margin_left = 365.0
+margin_right = 493.0
+
+[node name="MusicVolume" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 317.0
+margin_right = 493.0
+margin_bottom = 445.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MusicVolume" index="0"]
+margin_right = 208.0
+custom_fonts/font = SubResource( 9 )
+text = "Music Volume"
+
+[node name="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/MusicVolume" index="1"]
+margin_left = 218.0
+margin_right = 493.0
+
+[node name="SoundVolume" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 449.0
+margin_right = 493.0
+margin_bottom = 577.0
+
+[node name="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SoundVolume" index="0"]
+margin_right = 214.0
+custom_fonts/font = SubResource( 10 )
+text = "Sound Volume"
+
+[node name="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/SoundVolume" index="1"]
+margin_left = 224.0
+margin_right = 493.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 590.0
+margin_right = 1091.0
+margin_bottom = 600.0
+alignment = 1
+
+[node name="CreditsTitle" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 5.0
+margin_right = 501.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 4 )
+text = "Credits"
+align = 1
+
+[node name="Credits" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 68.0
+margin_right = 501.0
+margin_bottom = 131.0
+custom_fonts/font = ExtResource( 3 )
+text = "Graphics by magpyfeather (that's me!)
+"
+align = 1
+
+[node name="Pixeloid Sans" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 135.0
+margin_right = 501.0
+margin_bottom = 297.0
+custom_fonts/font = ExtResource( 3 )
+text = "Pixeloid Sans (the font used here) is by ggbot.itch.io, and is licensed under the SIL Open Font License, Version 1.1.
+"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kubbi" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 301.0
+margin_right = 501.0
+margin_bottom = 397.0
+custom_fonts/font = ExtResource( 3 )
+text = "\"Something New\" by Kubbi is licensed under CC-BY-SA 3.0.
+"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GDQuest" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 401.0
+margin_right = 501.0
+margin_bottom = 497.0
+custom_fonts/font = ExtResource( 3 )
+text = "Some code is taken from GDQuest Godot Demos by Nathan Lovato, which is distributed under the MIT License."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseSettings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 501.0
+margin_right = 501.0
+margin_bottom = 595.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "Close"
+
+[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/Fullscreen/MuteToggle" to="." method="toggle_fullscreen"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/MuteMusic/MuteToggle" to="." method="toggle_mute_music"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/MuteSFX/MuteToggle" to="." method="toggle_mute_sound"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/MusicVolume/HSlider" to="." method="music_volume_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/SoundVolume/HSlider" to="." method="sound_volume_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/CloseSettings" to="." method="close_settings"]
+
+[editable path="MarginContainer/HBoxContainer/VBoxContainer/Fullscreen"]
+[editable path="MarginContainer/HBoxContainer/VBoxContainer/MuteMusic"]
+[editable path="MarginContainer/HBoxContainer/VBoxContainer/MuteSFX"]
+[editable path="MarginContainer/HBoxContainer/VBoxContainer/MusicVolume"]
+[editable path="MarginContainer/HBoxContainer/VBoxContainer/SoundVolume"]
